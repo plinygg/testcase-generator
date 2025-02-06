@@ -1,31 +1,43 @@
 import random
 def str_checker(t):
-    return t == str(t)
+    return not t.isdigit()
 def main():
-    # find the number of testcases
-    num_testcases = input("how many test casese would you like to generate?\n")
-    if str_checker(num_testcases):
-        return "please input an integer"
-    num_testcases = int(num_testcases)
+    required = []
     
-    # find the number of testcases in one input, if needed
-    if_t_exists = input("does the problem have multiple testcases in one input? 1 for yes, 0 for no\n")
-    if str_checker(if_t_exists):
-        return "invalid response. please try again"
-    if_t_exists = int(if_t_exists)
+    ticker = 1
+    prefix = input("what is the time constraint for n?")
+    if str_checker(prefix):
+        print("Invalid. try again")
+        return
+    time_constraint = int(prefix)
+
+    while True:
+        dyna_string = "What goes on line #{a}? \n1. one number, the length of an array \n2. one number \n3. an array of numbers \n4. a set of numbers (n, m)\n5. a string \n6. that's it\n".format(a=str(ticker))
+        queue = input(dyna_string)
+        if str_checker(queue) or int(queue) > 6:
+            print("invalid input. please try again")
+            return
+        queue = int(queue)
+        if queue == 6:
+            break
+        required.append(queue)
+        ticker += 1
     
-    if if_t_exists != 1 or if_t_exists != 2:
-        return 'invalid response. please try again'
-    if if_t_exists == 1:
-        t = input("input the amount of testcases per input for you want.\n")
-        if str_checker:
-            return "please input an integer"
-        t = int(t)
+    len_array = -1
+    output = []
+    for part in required:
+        temp = []
+        if part == 1:
+            rand = random.randrange(0, time_constraint)
+            temp.append(rand)
+            len_array = rand
+        elif part == 2:
+            temp.append(random.randrange(0, 10000))
+        elif part == 3:
+            if len_array != -1:
+                for _ in range(len_array):
+                    temp.append(random.randrange(0, 100000)) 
+                    # for next time, see if it is possible to implement the ability to only have small amounts of numbers               
     
-    # most simple case, n and an array after
-    
-    n_exists = input('does the input start with an n? 1/0\n')
-    if str_checker(n_exists):
-        return "invalid response. try again"
     
 main()
