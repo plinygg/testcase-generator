@@ -77,4 +77,10 @@ def main():
                     print('invalid input')
                     return
                 letters.append(letter)
+            string = ""
+            for _ in range(random.randrange(1, time_constraint)):
+                string += chr(random.randrange(0, len(letters)))
+            temp.append(string)
+        elif part == 6:
+            pass
 main()
