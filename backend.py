@@ -1,19 +1,21 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    url = request.form['url']
-    response = requests.get(url)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    
-    # Example: Extract the title of the page
-    title = soup.title.string if soup.title else 'No title found'
-    
-    return f'Title of the page: {title}'
+@app.route('/')
+def view_form():
+    return render_template('index.html')
+
+@app.route('/handle_post', methods=['GET','POST'])
+def handle_post():
+    if request.method == "POST":
+        url = request.form['url']
+        response = requests.get(url)
+        return '<h1>Welcome!!!</h1>'
+    else:
+        return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

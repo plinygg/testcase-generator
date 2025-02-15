@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Testcase Generator - Aidan Chang</title>
+        <h1>Testcase Generator by Aidan Chang</h1>
+    </head>
+    <body>
+        <div>
+            <form action="{{ url_for('handle_post') }}" method="POST" >
+                <label for="url">URL:</label>
+                <input type="url" id="url" name="url" placeholder="URL">
+                <button type="submit">submit</button>
+            </form>
+        </div>
+    </body>
+</html>
