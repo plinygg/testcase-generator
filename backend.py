@@ -4,16 +4,20 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
+def getHTMLDocument(url):
+    response = requests.get(url)
+    return response.text
+
 @app.route('/')
 def view_form():
     return render_template('index.html')
 
-@app.route('/handle_post', methods=['GET','POST'])
-def handle_post():
+@app.route('/welcome', methods=['GET','POST'])
+def welcome():
     if request.method == "POST":
         url = request.form['url']
-        response = requests.get(url)
-        return '<h1>Welcome!!!</h1>'
+        txt = getHTMLDocument(url)
+        return txt
     else:
         return render_template('index.html')
 
