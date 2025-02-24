@@ -16,7 +16,8 @@ def view_form():
 def welcome():
     if request.method == "POST":
         url = request.form['url']
-        txt = getHTMLDocument(url)
+        txt = getHTMLDocument(url) # returns all the html sh#t
+        
         return txt
     else:
         return render_template('index.html')
