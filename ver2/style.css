@@ -13,3 +13,8 @@
 .dropdown {
     text-align: center;
 }
+
+.center {
+    margin: auto;
+    width: 75%;
+}

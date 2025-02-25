@@ -10,8 +10,14 @@ function addElement() {
     option1.textContent = "N (one number)";
     var option2 = document.createElement('option');
     option2.textContent = "A list of N numbers";
+    var option3 = document.createElement('option');
+    option3.textContent = "A list of parameters (integers)";
+    var option4 = document.createElement('option');
+    option4.textContent = "A string of size N";
     select.appendChild(option1);
     select.appendChild(option2);
+    select.appendChild(option3);
+    select.appendChild(option4);
     outsideDiv.appendChild(dropdown);
     outsideDiv.appendChild(document.createElement('br'));
     outsideDiv.appendChild(select);
