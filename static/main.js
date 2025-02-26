@@ -1,6 +1,7 @@
 function addElement() {
     var outsideDiv = document.createElement('div');
     outsideDiv.className = 'item';
+    outsideDiv.setAttribute('name', 'item');
     var dropdown = document.createElement('label');
     dropdown.className = 'dropdown';
     dropdown.textContent = 'What is the value on this line of the testcase?'

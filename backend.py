@@ -1,6 +1,5 @@
 from flask import Flask, request, render_template
 import requests
-from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
@@ -15,8 +14,7 @@ def view_form():
 @app.route('/parameters', methods=['GET','POST'])
 def parameters():
     if request.method == "POST":
-        hopefully = request.form.get("select")
-        return hopefully
+        return request.form.get('select')
     else:
         return render_template('main.html')
 
