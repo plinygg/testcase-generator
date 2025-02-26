@@ -10,17 +10,15 @@ def getHTMLDocument(url):
 
 @app.route('/')
 def view_form():
-    return render_template('index.html')
+    return render_template('main.html')
 
-@app.route('/welcome', methods=['GET','POST'])
-def welcome():
+@app.route('/parameters', methods=['GET','POST'])
+def parameters():
     if request.method == "POST":
-        url = request.form['url']
-        txt = getHTMLDocument(url) # returns all the html sh#t
-        
-        return txt
+        hopefully = request.form.get("select")
+        return hopefully
     else:
-        return render_template('index.html')
+        return render_template('main.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

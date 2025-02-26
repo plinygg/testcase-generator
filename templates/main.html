@@ -2,16 +2,16 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
     </head>
     <body>
         <h1>Aidan Chang's Testcase Generator</h1>
         <button id="addButt">Add Item</button>
         <button id="resetButton">Reset</button>
-        <form>
-            <div id="container"></div>
+        <form action="{{ url_for('parameters') }}" method="POST">
+            <div name="container" id="container"></div>
             <div class="center"><input type="submit"></div>
         </form>
-        <script src="main.js"></script>
+        <script src="{{url_for('static', filename='main.js')}}"></script>
     </body>
 </html>
