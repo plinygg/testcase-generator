@@ -14,7 +14,9 @@ def view_form():
 @app.route('/parameters', methods=['GET','POST'])
 def parameters():
     if request.method == "POST":
-        return request.form.get('select')
+        for k, v in request.form.items():
+            print(k, v)
+        return render_template('main.html')
     else:
         return render_template('main.html')
 
