@@ -28,11 +28,21 @@ function addElement() {
     var option4 = document.createElement('option');
     option4.textContent = "A string of size N";
     option4.setAttribute('name', '4');
+ 
+    var option5 = document.createElement("option");
+    option5.textContent = "A grid of integers size N x N";
+    option5.setAttribute("name", "4");
+     
+    var option6 = document.createElement("option");
+    option6.textContent = "A grid of letters size N x N";
+    option6.setAttribute("name", "6");
 
     select.appendChild(option1);
     select.appendChild(option2);
     select.appendChild(option3);
     select.appendChild(option4);
+    select.appendChild(option5);
+    select.appendChild(option6);
 
     outsideDiv.appendChild(dropdown);
     outsideDiv.appendChild(document.createElement('br'));

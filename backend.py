@@ -17,7 +17,7 @@ def parameters():
         res = []
         for k, v in request.form.items():
             res.append([k, v])
-        return res
+        return '<h1>Welcome!!!</h1>'
     return render_template('main.html')
 
 if __name__ == '__main__':
