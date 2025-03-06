@@ -18,3 +18,7 @@
     margin: auto;
     width: 75%;
 }
+
+#secondarySelect {
+    display: none; /* Initially hidden */
+}
