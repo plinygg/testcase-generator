@@ -13,6 +13,7 @@ function addElement() {
     select.className = 'select';
     select.setAttribute('name', `select_${counter}`);
     select.setAttribute('onchange', "handleSelection()");
+    select.setAttribute("id", `primarySelect_${counter}`);
 
     var option1 = document.createElement('option');
     option1.textContent = "one number (# testcases, # lines)";
@@ -44,9 +45,18 @@ function addElement() {
 
     var select2 = document.createElement('select');
 
-    var optional1 = document.createElement('option');
-    // optional selections need to dynamically change from past form elements choosing variables
+    for (let i = 65; i <= 90; i++) {
+        const option = document.createElement("option");
+        const letter = String.fromCharCode(i);
+        option.value = letter;
+        option.textContent = letter;
+        select2.appendChild(option);
+    }
 
+    outsideDiv2.appendChild(select2);
+    // optional selections need to dynamically change from past form elements choosing variables
+    // fix the Cannot read properties of null (reading 'value') bug in the handleSelection function
+    // something to do with unique id values 
     
 
     select.appendChild(option1);
@@ -61,6 +71,7 @@ function addElement() {
     outsideDiv.appendChild(select);
 
     document.getElementById('container').appendChild(outsideDiv);
+    document.getElementById('container').appendChild(outsideDiv2);
     counter++;
 }
 
@@ -70,9 +81,9 @@ function resetDiv() {
 }
 
 function handleSelection() {
-    const primarySelect = document.getElementById('primarySelect');
+    const primarySelect = document.getElementById(`primarySelect_${counter}`);
     const secondarySelectDiv = document.getElementById('secondarySelect');
-    
+    console.log(secondarySelectDiv);
     if (primarySelect.value === 'showSecondary') {
         secondarySelectDiv.style.display = 'block'; // Show secondary select
     } else {
