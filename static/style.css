@@ -22,3 +22,7 @@
 #secondarySelect {
     display: none; /* Initially hidden */
 }
+
+.hidden {
+    display: none;
+}

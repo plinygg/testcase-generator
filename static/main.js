@@ -12,12 +12,22 @@ function addElement() {
     var select = document.createElement('select');
     select.className = 'select';
     select.setAttribute('name', `select_${counter}`);
-    select.setAttribute('onchange', "handleSelection()");
-    select.setAttribute("id", `primarySelect_${counter}`);
+    select.setAttribute('id', `primarySelect_${counter}`);
+    select.setAttribute('data-counter', counter);
+    select.setAttribute('onchange', "handleSelection(this)");
+
+    var optionDefault = document.createElement('option');
+    optionDefault.textContent = "-- Select an option --";
+    optionDefault.setAttribute('value', '');
+    optionDefault.setAttribute('selected', 'true');
+    optionDefault.setAttribute('disabled', 'true'); 
+
+    select.appendChild(optionDefault);
 
     var option1 = document.createElement('option');
     option1.textContent = "one number (# testcases, # lines)";
     option1.setAttribute('name', '1');
+    option1.setAttribute('value', 'showSecondary');
 
     var option2 = document.createElement('option');
     option2.textContent = "A list of numbers";
@@ -31,17 +41,21 @@ function addElement() {
     var option4 = document.createElement('option');
     option4.textContent = "A string";
     option4.setAttribute('name', '4');
+    option4.setAttribute('value', 'showSecondary');
  
     var option5 = document.createElement("option");
     option5.textContent = "A grid of integers";
-    option5.setAttribute("name", "4");
+    option5.setAttribute("name", "5");
      
     var option6 = document.createElement("option");
     option6.textContent = "A grid of letters";
     option6.setAttribute("name", "6");
 
+    // option 5 and option 6 will be special cases where it needs two possibly independent variables to select
+
     var outsideDiv2 = document.createElement("div");
-    outsideDiv2.setAttribute('id', 'secondarySelect');
+    outsideDiv2.setAttribute('id', `secondarySelect_${counter}`);
+    outsideDiv2.style.display = 'none';
 
     var select2 = document.createElement('select');
 
@@ -52,11 +66,7 @@ function addElement() {
         option.textContent = letter;
         select2.appendChild(option);
     }
-
     outsideDiv2.appendChild(select2);
-    // optional selections need to dynamically change from past form elements choosing variables
-    // fix the Cannot read properties of null (reading 'value') bug in the handleSelection function
-    // something to do with unique id values 
     
 
     select.appendChild(option1);
@@ -71,7 +81,8 @@ function addElement() {
     outsideDiv.appendChild(select);
 
     document.getElementById('container').appendChild(outsideDiv);
-    document.getElementById('container').appendChild(outsideDiv2);
+    outsideDiv.appendChild(outsideDiv2);
+    // document.getElementById('container').appendChild(outsideDiv2);
     counter++;
 }
 
@@ -80,16 +91,16 @@ function resetDiv() {
     counter = 0;
 }
 
-function handleSelection() {
-    const primarySelect = document.getElementById(`primarySelect_${counter}`);
-    const secondarySelectDiv = document.getElementById('secondarySelect');
-    console.log(secondarySelectDiv);
-    if (primarySelect.value === 'showSecondary') {
-        secondarySelectDiv.style.display = 'block'; // Show secondary select
+function handleSelection(element) {
+    const counterValue = element.getAttribute('data-counter');
+    const secondarySelectDiv = document.getElementById(`secondarySelect_${counterValue}`);
+
+    if (element.value == 'showSecondary') {
+        secondarySelectDiv.style.display = 'block';
     } else {
-        secondarySelectDiv.style.display = 'none'; // Hide secondary select
+        secondarySelectDiv.style.display = 'none';
     }
-}   
+}
 document.getElementById('addButt').addEventListener('click', addElement);
 
 document.getElementById('resetButton').addEventListener('click', resetDiv);
